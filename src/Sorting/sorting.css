@@ -1,0 +1,123 @@
+.sorting-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 60px;
+}
+
+.sorting{
+    width: 800px;
+    height: 40px;
+    margin: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.posts{
+    font-size: 18px;
+}
+
+.my-select{
+    margin-right: 10px;
+    background-color: #f2f3f6;
+}
+
+.my-select:hover{
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+option:hover {
+    background-color: blue;
+}
+
+.period-container{
+    background-color: white;
+    width: 800px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.period{
+    margin-left: 15px;
+    background-color: #f5ebe7;
+    height: 35px;
+    width: 100px;
+    border-radius: 30px;
+    display: flex;
+}
+
+.period-container-delete-button{
+    margin-left: 15px;
+    border: 1px #babec4 groove;
+    background-color: white;
+    padding: 10px;
+    height: auto;
+    width: auto;
+    border-radius: 25px;
+}
+
+.period-container-delete-button:hover{
+    cursor: grabbing;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    margin-left: 5px;
+}
+
+.tooltip .tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    height: 30px;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 240%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+    transition: 1s ease;
+}
+
+.filters-delete-button{
+    border: 0;
+    background-color: #f2f3f6;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 30px;
+    margin: 8px;
+}
+
+.filters-delete-button:hover {
+    cursor: grabbing;
+}
+
+.filters-button{
+    border: 0;
+    background-color: #f2f3f6;
+    border-radius: 30px;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}

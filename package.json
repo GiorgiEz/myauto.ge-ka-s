@@ -10,9 +10,15 @@
     "@types/node": "^16.18.33",
     "@types/react": "^18.2.7",
     "@types/react-dom": "^18.2.4",
+    "@types/react-select": "^5.0.1",
+    "bootstrap": "^5.3.0",
+    "formik": "^2.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
     "react-scripts": "5.0.1",
+    "react-select": "^5.7.3",
+    "redux": "^4.2.1",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
@@ -39,5 +45,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "multiselect-react-dropdown": "^2.0.25",
+    "react-bootstrap": "^2.7.4",
+    "react-multi-select-component": "^4.3.4"
   }
 }

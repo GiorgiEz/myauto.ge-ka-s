@@ -1,0 +1,152 @@
+div{
+    font-family: TBCXRegular, serif;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.main-container{
+    background: #f2f3f6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product{
+    background-color: white;
+    border-radius: 10px;
+    width: 800px;
+    margin: 5px;
+    display: flex;
+}
+
+img{
+    margin: 15px;
+    border-radius: 10px;
+    width: 180px;
+    height: 150px;
+}
+
+.name-year-customs{
+    width: 580px;
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+}
+
+.name-year-customs > div:last-child {
+    justify-self: end;
+}
+
+.car-info{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.views-time-container{
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.car-info > div:last-child {
+    justify-self: end;
+}
+
+.comment-view-save-icons{
+    margin: 10px;
+}
+
+.comment-view-save-icons:hover svg path{
+    fill: #19e58b;
+}
+
+.name{
+    font-weight: bold;
+}
+
+.year{
+    margin-left: 15px;
+    color: gray;
+    font-weight: bold;
+}
+
+.customs-passed{
+    display: flex;
+    font-size: 17px;
+    color: green;
+}
+
+.customs-not-passed{
+    font-size: 17px;
+    color: red;
+}
+
+.engine-volume{
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px
+}
+
+.gear-type{
+    margin-left: 10px
+}
+
+.mileage-covered{
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+.money{
+    font-size: 25px;
+    font-weight: 550;
+    margin-right: 10px;
+}
+
+.views{
+    margin-right: 10px;
+    color: gray;
+}
+
+.order-date{
+    margin-top: 2px;
+    color: gray;
+}
+
+.for-rent{
+    background: #019301;
+    height: 18px;
+    width: 80px;
+    margin-right: 10px;
+    border-radius: 3px;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+}
+
+.clear-filters{
+    margin-top: 10px;
+    background-color: red;
+    transition: background-color 0.3s ease;
+    border: 0;
+    border-radius: 15px;
+    padding: 25px;
+    color: white;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.clear-filters:hover{
+    cursor: grabbing;
+    background-color: #b70101;
+}

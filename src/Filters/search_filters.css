@@ -1,0 +1,105 @@
+div{
+    font-family: Helvetica, serif;
+}
+
+.search-container{
+    width: 240px;
+    height: auto;
+    background-color: white;
+    margin-right: 25px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px
+}
+
+.vehicle-buttons{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.type-button{
+    width: 80px;
+    height: 50px;
+    background-color: rgb(245, 245, 245);
+    border: 1px solid #e8e8e8;
+}
+
+.type-button:hover{
+    cursor: grabbing;
+    background-color: white;
+    transition: background-color 0.3s ease;
+}
+
+.type-button:focus{
+    border-bottom: 1px solid red;
+    background-color: white;
+    transition: border-color 0.5s;
+}
+
+.type-button:focus svg path{
+    fill: red;
+    transition: fill 0.5s;
+}
+
+.search-selects{
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 15px;
+    border: 2px solid #d0cece;
+    color: grey;
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: 100;
+}
+
+.search-price-inputs{
+    width: 80px;
+    height: 35px;
+    border-radius: 7px;
+    font-size: 15px;
+    border: 1px solid #d0cece;
+    color: grey;
+    margin-bottom: 20px;
+    padding-left: 10px;
+}
+
+.search-price-inputs:focus{
+    outline: none;
+    box-shadow: none;
+}
+
+.button-search{
+    margin-bottom: 20px;
+    background-color: red;
+    transition: background-color 0.3s ease;
+    border: 0;
+    border-radius: 5px;
+    width: 200px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.button-search:hover{
+    cursor: grabbing;
+    background-color: #b70101;
+}
+
+.menu-buttons{
+    background: #f2f3f6;
+    border: 0;
+}
+
+.menu-buttons:hover{
+    color: #8f8e8e;
+}
+
+.menu-buttons:focus{
+    color: red;
+}

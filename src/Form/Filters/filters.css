@@ -1,0 +1,62 @@
+.multiselect-container{
+    margin-bottom: 10px;
+}
+
+.custom-multiselect {
+    width: 180px;
+    color: #b0aeae;
+    border: 1px solid #faf9f9;
+    border-radius: 5px;
+    margin-top: 5px;
+    outline: none;
+}
+
+.custom-multiselect:hover{
+    border: 1px solid black;
+}
+
+label{
+    font-size: 15px;
+}
+
+.custom-checkbox{
+    scale: 1.2;
+    margin-right: 15px;
+    margin-left: 5px;
+    transition: accent-color 1s ease;
+}
+
+.custom-checkbox:checked {
+    scale: 1.3;
+    accent-color: red;
+}
+
+.rmsc {
+    --rmsc-main: #4285f4;
+    --rmsc-hover: #f1f3f5;
+    --rmsc-selected: #e2e6ea;
+    --rmsc-border: #000000;
+    --rmsc-bg: #fff;
+    --rmsc-p: 10px; /* Spacing */
+    --rmsc-radius: 4px; /* Radius */
+    --rmsc-h: 38px; /* Height */
+}
+
+.rmsc.dark {
+    width: 200px;
+    margin-top: 5px;
+    --rmsc-main: #c9c8c8;
+    --rmsc-hover: #ffffff;
+    --rmsc-selected: #ffffff;
+    --rmsc-border: #c9c8c8;
+    --rmsc-bg: #fff;
+    color: #000000;
+}
+
+.checkbox-label{
+    color: #8f8e8e;
+}
+
+.checkbox-label:hover{
+    color: #000000;
+}

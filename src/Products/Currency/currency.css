@@ -1,0 +1,29 @@
+.currency-button{
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    border: 0;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: opacity 0.05s ease-in-out;
+}
+
+.disabled-currency-button{
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    border: 0;
+    border-radius: 20px;
+    font-weight: bold;
+    opacity: 0.15;
+    transition: opacity 0.05s ease-in-out;
+    transition-delay: 0.05s
+}
+
+.currency-button:hover{
+    cursor: grabbing;
+}
+
+.disabled-currency-button:hover{
+    cursor: grabbing;
+}
