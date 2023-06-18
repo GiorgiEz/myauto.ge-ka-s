@@ -1,4 +1,4 @@
-import {Product} from "../Utils/types";
+import {Period, Product} from "../Utils/types";
 
 export function gear_type_handler(product: Product){
     return product.gear_type_id === 1 ? "მექანიკა" : product.gear_type_id === 2 ? "ავტომატიკა" :
@@ -44,4 +44,17 @@ export function currencyConverter(product: Product, currency: boolean) {
             minimumFractionDigits: 0,
             maximumFractionDigits: 0,
         })
+}
+
+export const periodConverter: Record<Period, string> = {
+    "1" : "1 საათი",
+    "2" : "2 საათი",
+    "3" : "3 საათი",
+    "24" : "1 დღე",
+    "48" : "2 დღე",
+    "72" : "3 დღე",
+    "168" : "1 კვირა",
+    "336" : "2 კვირა",
+    "504" : "3 კვირა",
+    "" : ""
 }

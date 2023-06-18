@@ -7,6 +7,7 @@ import Select from 'react-select';
 import {Period, Product} from "../Utils/types";
 import {customStyles, filterProducts} from "./DisplayFilters";
 import {sortBy} from "../Sorting/sortBy";
+import {Option} from "react-multi-select-component";
 
 const options = [
     {value: '', label: 'პერიოდი', isHidden: true, isDisabled: true},
@@ -33,7 +34,7 @@ export function PeriodFilter() {
         dispatch(setDisplayedProducts([...sortBy(sortValue, filteredProducts)]))
     }, [filtersArray.period])
 
-    const handlePeriodSelect = (selectedOption: any) => {
+    const handlePeriodSelect = (selectedOption: Option | null) => {
         const selectedValue = selectedOption ? selectedOption.value : '';
         dispatch(setFiltersArray({ ...filtersArray, period: selectedValue as Period }));
     }

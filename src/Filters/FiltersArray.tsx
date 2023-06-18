@@ -3,9 +3,9 @@ import "../Sorting/sorting.css"
 import {useDispatch, useSelector} from "react-redux";
 import {ProductsState} from "../Redux/redux-types";
 import {setFiltersArray, setShowFiltersScreen, setWindowWidth} from "../Redux/Actions";
-import {periodConverter} from "../Utils/types";
 import {Option} from "react-multi-select-component";
 import {Icons} from "../Utils/Icons";
+import {periodConverter} from "../Products/ProductsInfo";
 
 export function FiltersArray(){
     const dispatch = useDispatch()
@@ -20,7 +20,7 @@ export function FiltersArray(){
 
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
-    }, [dispatch])
+    }, [dispatch, windowWidth])
 
     function handlePeriodRemoval(){
         dispatch(setFiltersArray({...filtersArray, period: ""}))

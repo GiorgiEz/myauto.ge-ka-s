@@ -25,15 +25,15 @@ export function DealTypeFilter(){
 
     const { setFieldValue } = useFormikContext();
 
-    function handleFilterDelete(){
-        const filteredProducts = filterProducts(products, filtersArray, currency)
-        dispatch(setDisplayedProducts([...sortBy(sortValue, filteredProducts)]))
-    }
-
     useEffect(() => {
         setFieldValue("dealType", filtersArray.dealType);
-        handleFilterDelete()
-    }, [filtersArray.dealType])
+        setFieldValue("categories", filtersArray.categories);
+        setFieldValue("manufacturers", filtersArray.manufacturers);
+        setFieldValue("models", filtersArray.models);
+        setFieldValue("priceTo", filtersArray.priceTo);
+        setFieldValue("priceFrom", filtersArray.priceFrom);
+        dispatch(setDisplayedProducts([...sortBy(sortValue, filterProducts(products, filtersArray, currency))]))
+    }, [filtersArray])
 
     const displayPlaceholder = (selected: Option[]) => {
         if (selected.length === 0) return <div>გარიგების ტიპი</div>

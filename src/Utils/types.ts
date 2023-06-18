@@ -2,19 +2,6 @@ import {Option} from "react-multi-select-component";
 
 export type Period = "1" | "2" | "3" | "24" | "48" | "72" | "168" | "336" | "504" | ""
 
-export const periodConverter: Record<Period, string> = {
-    "1" : "1 საათი",
-    "2" : "2 საათი",
-    "3" : "3 საათი",
-    "24" : "1 დღე",
-    "48" : "2 დღე",
-    "72" : "3 დღე",
-    "168" : "1 კვირა",
-    "336" : "2 კვირა",
-    "504" : "3 კვირა",
-    "" : ""
-}
-
 export type FilterType = {
     period: Period,
     dealType: Option[],

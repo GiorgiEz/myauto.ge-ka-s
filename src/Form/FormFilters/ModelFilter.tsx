@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { MultiSelect, Option } from 'react-multi-select-component';
 import {FormFilterType, Model} from "../../Utils/types";
-import {CustomItemRenderer, filterProducts} from "../../Filters/DisplayFilters";
+import {CustomItemRenderer} from "../../Filters/DisplayFilters";
 import {useField} from "formik";
 import { useFormikContext } from 'formik';
-import {setDisplayedProducts} from "../../Redux/Actions";
-import {sortBy} from "../../Sorting/sortBy";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {ProductsState} from "../../Redux/redux-types";
 
 export function ModelFilter() {
-    const dispatch = useDispatch()
-    const products = useSelector((state: ProductsState) => state.products)
-    const currency = useSelector((state: ProductsState) => state.currency)
-    const sortValue = useSelector((state: ProductsState) => state.sortValue)
-    const filtersArray = useSelector((state: ProductsState) => state.filtersArray)
     const showFiltersScreen = useSelector((state: ProductsState) => state.showFiltersScreen)
     const windowWidth = useSelector((state: ProductsState) => state.windowWidth)
 
@@ -36,18 +29,6 @@ export function ModelFilter() {
     const displayPlaceholder = (selected: Option[]) => {
         if (selected.length === 0) return <div>მოდელი</div>
     }
-
-    const { setFieldValue } = useFormikContext();
-
-    function handleFilterDelete(){
-        const filteredProducts = filterProducts(products, filtersArray, currency)
-        dispatch(setDisplayedProducts([...sortBy(sortValue, filteredProducts)]))
-    }
-
-    useEffect(() => {
-        setFieldValue("models", filtersArray.models);
-        handleFilterDelete()
-    }, [filtersArray.models])
 
     return (
         <div>

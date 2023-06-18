@@ -1,21 +1,14 @@
 import React, {useEffect, useState} from "react";
 import {Category} from "../../Utils/types";
 import {MultiSelect, Option} from "react-multi-select-component";
-import {CustomItemRenderer, filterProducts} from "../../Filters/DisplayFilters";
-import {useField, useFormikContext} from "formik";
-import {setDisplayedProducts} from "../../Redux/Actions";
-import {sortBy} from "../../Sorting/sortBy";
-import {useDispatch, useSelector} from "react-redux";
+import {CustomItemRenderer} from "../../Filters/DisplayFilters";
+import {useField} from "formik";
+import {useSelector} from "react-redux";
 import {ProductsState} from "../../Redux/redux-types";
 
 export function CategoryFilter(){
-    const dispatch = useDispatch()
     const [field, , helpers] = useField("categories");
     const [categories, setCategories] = useState<Category[]>([])
-    const products = useSelector((state: ProductsState) => state.products)
-    const currency = useSelector((state: ProductsState) => state.currency)
-    const sortValue = useSelector((state: ProductsState) => state.sortValue)
-    const filtersArray = useSelector((state: ProductsState) => state.filtersArray)
     const showFiltersScreen = useSelector((state: ProductsState) => state.showFiltersScreen)
     const windowWidth = useSelector((state: ProductsState) => state.windowWidth)
 
@@ -29,18 +22,6 @@ export function CategoryFilter(){
     const displayPlaceholder = (selected: Option[]) => {
         if (selected.length === 0) return <div>კატეგორია</div>
     }
-
-    const { setFieldValue } = useFormikContext();
-
-    function handleFilterDelete(){
-        const filteredProducts = filterProducts(products, filtersArray, currency)
-        dispatch(setDisplayedProducts([...sortBy(sortValue, filteredProducts)]))
-    }
-
-    useEffect(() => {
-        setFieldValue("categories", filtersArray.categories);
-        handleFilterDelete()
-    }, [filtersArray.categories])
 
     return (
         <div>

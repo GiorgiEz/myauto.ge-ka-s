@@ -30,14 +30,9 @@ export function CarModelName(props: Props) {
     }
 
     return (
-        <div style={{ marginTop: "1px", fontWeight: "bold" }}>
-            {props.product.for_rent && (
-                <div style={{ display: "flex" }}>
-                    <div className="for-rent">ქირავდება</div>
-                    <div className={"name"}>{displayCarName()}</div>
-                </div>
-            )}
-            {!props.product.for_rent && <div className={"name"}>{displayCarName()}</div>}
+        <div style={{ marginTop: "1px", fontWeight: "bold", display: "flex" }}>
+            {props.product.for_rent && (<div className="for-rent">ქირავდება</div>)}
+            <div className={"name"}>{displayCarName()}</div>
         </div>
     )
 }

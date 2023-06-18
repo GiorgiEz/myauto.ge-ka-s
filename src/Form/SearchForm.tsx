@@ -1,4 +1,4 @@
-import React, {useEffect} from "react"
+import React from "react"
 import {Formik, Form, Field} from "formik";
 import {DealTypeFilter} from "./FormFilters/DealTypeFilter";
 import {ManufacturerFilter} from "./FormFilters/MansFilter";
@@ -23,7 +23,6 @@ export function SearchForm(){
 
     const handleSubmit = (values: typeof initialValues) => {
         let filteredProducts: Product[] = filterProducts(products, filtersArray, currency)
-
         dispatch(setFiltersArray({...filtersArray, ...values}))
         dispatch(setDisplayedProducts([...sortBy(sortValue, filteredProducts)]))
     }
