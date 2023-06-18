@@ -103,3 +103,69 @@ label {
 .menu-buttons:focus{
     color: red;
 }
+
+.filter-button {
+    display: none;
+}
+
+@media (max-width: 1125px) {
+    .period-select{
+        width: 125px;
+        font-size: 13px;
+    }
+
+    .filter-button{
+        font-weight: 100;
+        display: flex;
+        align-items: center;
+        padding: 8px;
+
+        border: 0;
+        background-color: #f2f3f6;
+        font-size: 15px;
+        border-radius: 30px;
+        margin: 8px;
+    }
+
+    .filter-button:hover{
+        cursor: grabbing;
+    }
+
+    .search-container {
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        right: -100%;
+        top: 0;
+        transition: left 2s ease-in-out;
+    }
+
+    .search-container:active{
+        left: 0;
+    }
+
+    .vehicle-buttons{
+        margin-top: 15px;
+        scale: 1.3;
+    }
+
+    .type-button{
+        width: 20vw;
+        height: auto;
+    }
+
+    .button-search {
+        width: 75vw;
+        min-height: 4vh;
+    }
+
+    .search-price-inputs{
+        width: 32.5vw;
+    }
+}
