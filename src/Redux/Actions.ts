@@ -35,3 +35,13 @@ export const setSortValue = (sortValue: string): ProductsActionType => ({
     type: "SET_SORT_VALUE",
     payload: sortValue
 })
+
+export const setWindowWidth = (windowWidth: number): ProductsActionType => ({
+    type: "SET_WINDOW_WIDTH",
+    payload: windowWidth
+})
+
+export const setShowFiltersScreen = (filtersScreen: boolean): ProductsActionType => ({
+    type: "SET_SHOW_FILTERS_SCREEN",
+    payload: filtersScreen
+})

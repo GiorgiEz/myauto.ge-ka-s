@@ -1,14 +1,14 @@
-import React from "react"
+import React, {useEffect} from "react"
 import {Formik, Form, Field} from "formik";
-import {DealTypeFilter} from "./Filters/DealTypeFilter";
-import {ManufacturerFilter} from "./Filters/MansFilter";
-import {ModelFilter} from "./Filters/ModelFilter";
-import {CategoryFilter} from "./Filters/CategoryFilter";
-import {PriceFilter} from "./Filters/PriceFilter";
+import {DealTypeFilter} from "./FormFilters/DealTypeFilter";
+import {ManufacturerFilter} from "./FormFilters/MansFilter";
+import {ModelFilter} from "./FormFilters/ModelFilter";
+import {CategoryFilter} from "./FormFilters/CategoryFilter";
+import {PriceFilter} from "./FormFilters/PriceFilter";
 import {useDispatch, useSelector} from "react-redux";
 import {ProductsState} from "../Redux/redux-types";
 import {FormFilterType, Product} from "../Utils/types";
-import {setDisplayedProducts, setFiltersArray, setLoading} from "../Redux/Actions";
+import {setDisplayedProducts, setFiltersArray, setLoading, setShowFiltersScreen} from "../Redux/Actions";
 import {sortBy} from "../Sorting/sortBy";
 import {filterProducts} from "../Filters/DisplayFilters";
 
@@ -18,6 +18,8 @@ export function SearchForm(){
     const currency = useSelector((state: ProductsState) => state.currency)
     const filtersArray = useSelector((state: ProductsState) => state.filtersArray)
     const sortValue = useSelector((state: ProductsState) => state.sortValue)
+    const showFiltersScreen = useSelector((state: ProductsState) => state.showFiltersScreen)
+    const windowWidth = useSelector((state: ProductsState) => state.windowWidth)
 
     const handleSubmit = (values: typeof initialValues) => {
         let filteredProducts: Product[] = filterProducts(products, filtersArray, currency)
@@ -36,13 +38,11 @@ export function SearchForm(){
     }
 
     const onSubmit = (values: typeof initialValues) => {
-        if (values.dealType.length > 0 || values.manufacturers.length > 0 || values.models.length > 0
-            || values.categories.length > 0 || values.priceFrom || values.priceTo)
-            dispatch(setLoading(true))
-
+        dispatch(setLoading(true))
         setTimeout(() => {
             handleSubmit(values)
             dispatch(setLoading(false))
+            dispatch(setShowFiltersScreen(false))
         }, 500)
     }
 
@@ -55,7 +55,7 @@ export function SearchForm(){
                 <Field name={"categories"} as={CategoryFilter}></Field>
                 <Field name={"price"} as={PriceFilter}></Field>
 
-                <button className={"button-search"} type={"submit"}>ძებნა</button>
+                {showFiltersScreen || windowWidth > 1125 ? <button className={"button-search"} type={"submit"}>ძებნა</button> : ""}
             </Form>
         </Formik>
     )

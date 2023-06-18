@@ -11,12 +11,14 @@ import {
     filterByPeriod,
     filterByPriceFrom, filterByPriceTo
 } from "./filterBy";
+import {useSelector} from "react-redux";
+import {ProductsState} from "../Redux/redux-types";
 
 //custom styles for react-select component
 export const customStyles = {
     control: (provided:any) => ({
         ...provided,
-        marginRight: "10px",
+        marginRight: "5px",
         backgroundColor: '#f2f3f6',
         borderColor: '#b4b6b6',
         borderRadius: "7px",
@@ -33,8 +35,16 @@ export const customStyles = {
         cursor: 'pointer',
         display: state.data.isHidden ? 'none' : 'block',
     }),
+    indicatorSeparator: () => ({
+        display: 'none',
+    }),
+    placeholder: (provided: any) => ({
+        ...provided,
+        color: 'black',
+    }),
 }
 
+//Custom checkbox for MultiSelect components
 export const CustomItemRenderer: React.FC<CustomCheckboxType> = ({ option, checked, onClick }) => {
     return (
         <div style={{ display: "flex" }}>
@@ -64,22 +74,25 @@ export function filterProducts(products: Product[], filtersArray: FilterType, cu
 }
 
 export function DisplayFilters() {
+    const windowWidth = useSelector((state: ProductsState) => state.windowWidth)
+    const showFiltersScreen = useSelector((state: ProductsState) => state.showFiltersScreen)
+
     return (
         <div style={{display: "flex", flexDirection: "column"}}>
-            <div style={{display: "flex", fontWeight: "100"}}>
+            {windowWidth > 1125 ? <div style={{display: "flex", fontWeight: "100"}}>
                 <button className={"menu-buttons"}>მთავარი</button><h6>{">"}</h6>
                 <button className={"menu-buttons"}>ძიება</button><h6>{">"}</h6>
                 <button className={"menu-buttons"}>იყიდება</button>
-            </div>
+            </div> : ""}
             <div className={"search-container"}>
-                <div className={"vehicle-buttons"}>
+                {showFiltersScreen || windowWidth > 1125 ? <div className={"vehicle-buttons"}>
                     <button className={`type-button`} style={{borderTopLeftRadius: "5px"}}>
                         {Icons.carIcon}</button>
                     <button className={`type-button`}>
                         {Icons.specIcon}</button>
                     <button className={`type-button`} style={{borderTopRightRadius: "5px"}}>
                         {Icons.motoIcon}</button>
-                </div>
+                </div> : ""}
                 <SearchForm/>
             </div>
         </div>

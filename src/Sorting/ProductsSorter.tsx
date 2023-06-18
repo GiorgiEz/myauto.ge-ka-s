@@ -23,6 +23,7 @@ export function ProductsSorter(){
     const dispatch = useDispatch()
     const sortValue = useSelector((state: ProductsState) => state.sortValue)
     const displayedProducts = useSelector((state: ProductsState) => state.displayedProducts)
+    const showFiltersScreen = useSelector((state: ProductsState) => state.showFiltersScreen)
 
     const handleSortingSelect = (selectedOption: Option | null) => {
         const selectedValue = selectedOption ? selectedOption.value : '';
@@ -53,7 +54,7 @@ export function ProductsSorter(){
             <div className={"sorting"}>
                 <div className={"posts"}>{displayedProducts.length} განცხადება</div>
 
-                <div style={{display: "flex"}}>
+                {!showFiltersScreen ? <div style={{display: "flex"}}>
                     <PeriodFilter/>
                     <Select
                         id="sort-select"
@@ -63,8 +64,9 @@ export function ProductsSorter(){
                         styles={customStylesSort}
                         placeholder="თარიღი კლებადი"
                         isSearchable={false}
+                        className={"sort-select"}
                     />
-                </div>
+                </div> : ""}
             </div>
             <FiltersArray/>
         </div>

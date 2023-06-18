@@ -16,6 +16,8 @@ export function CategoryFilter(){
     const currency = useSelector((state: ProductsState) => state.currency)
     const sortValue = useSelector((state: ProductsState) => state.sortValue)
     const filtersArray = useSelector((state: ProductsState) => state.filtersArray)
+    const showFiltersScreen = useSelector((state: ProductsState) => state.showFiltersScreen)
+    const windowWidth = useSelector((state: ProductsState) => state.windowWidth)
 
     useEffect(() => {
         fetch("https://api2.myauto.ge/ka/cats/get")
@@ -41,18 +43,22 @@ export function CategoryFilter(){
     }, [filtersArray.categories])
 
     return (
-        <div className="multiselect-container">
-            <label htmlFor="category-select">კატეგორია</label>
-            <MultiSelect
-                options={categories.map((cat) => ({label: cat.title, value: cat.category_id,}))}
-                value={field.value}
-                labelledBy="manufacturer-select"
-                className="dark"
-                onChange={(selected: Option[]) => helpers.setValue(selected)}
-                valueRenderer={displayPlaceholder}
-                hasSelectAll={false}
-                ItemRenderer={CustomItemRenderer}
-            />
+        <div>
+            {showFiltersScreen || windowWidth > 1125 ?
+                <div className="multiselect-container">
+                    <label htmlFor="category-select">კატეგორია</label>
+                    <MultiSelect
+                        options={categories.map((cat) => ({label: cat.title, value: cat.category_id,}))}
+                        value={field.value}
+                        labelledBy="manufacturer-select"
+                        className="dark"
+                        onChange={(selected: Option[]) => helpers.setValue(selected)}
+                        valueRenderer={displayPlaceholder}
+                        hasSelectAll={false}
+                        ItemRenderer={CustomItemRenderer}
+                    />
+                </div> : ""
+            }
         </div>
     )
 }

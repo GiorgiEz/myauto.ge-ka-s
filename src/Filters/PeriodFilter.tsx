@@ -48,6 +48,7 @@ export function PeriodFilter() {
                 placeholder="პერიოდი"
                 styles={customStyles}
                 isSearchable={false}
+                className={"period-select"}
             />
         </div>
     )

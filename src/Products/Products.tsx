@@ -2,7 +2,14 @@ import React, {useEffect, useState} from "react";
 import "./products.css"
 import {Model, Product} from "../Utils/types";
 import {ProductsSorter} from "../Sorting/ProductsSorter";
-import {setDisplayedProducts, setFiltersArray, setLoading, setProducts} from "../Redux/Actions";
+import {
+    setDisplayedProducts,
+    setFiltersArray,
+    setLoading,
+    setManufacturers,
+    setProducts,
+    setShowFiltersScreen
+} from "../Redux/Actions";
 import {useDispatch, useSelector} from "react-redux";
 import {Header} from "../Header/Header";
 import {ProductsState} from "../Redux/redux-types";
@@ -21,13 +28,28 @@ import {Icons} from "../Utils/Icons";
 
 export function Products(){
     const dispatch = useDispatch()
-    const displayedProducts = useSelector((state: ProductsState) => state.displayedProducts)
     const products = useSelector((state: ProductsState) => state.products)
+    const displayedProducts = useSelector((state: ProductsState) => state.displayedProducts)
     const currency = useSelector((state: ProductsState) => state.currency)
     const isLoading = useSelector((state: ProductsState) => state.isLoading)
+    const windowWidth = useSelector((state: ProductsState) => state.windowWidth)
+    const showFiltersScreen = useSelector((state: ProductsState) => state.showFiltersScreen)
 
     const [models, setModels] = useState<{ [key: number]: Model[] }>([])
 
+    //store all models in the models state for every displayed car's manufacturer
+    useEffect(() => {
+        function fetchData(id: number) {
+            fetch(`https://api2.myauto.ge/ka/getManModels?man_id=${id}`)
+                .then((response) => response.json())
+                .then((response) => {
+                    if (!models[id]) setModels((prevModels) => ({...prevModels, [id]: response.data}))
+                }).catch((error) => console.log(error))
+        }
+        products.forEach((product) => fetchData(product.man_id));
+    }, [models, products])
+
+    //fetch the products
     useEffect(() => {
         dispatch(setLoading(true))
         fetch("https://api2.myauto.ge/ka/products/")
@@ -35,22 +57,21 @@ export function Products(){
             .then(response => {
                 dispatch(setProducts(response.data.items))
                 dispatch(setDisplayedProducts(response.data.items))
-            })
-            .catch(error => console.log(error))
+            }).catch(error => console.log(error))
             .finally(() => dispatch(setLoading(false)))
     }, [dispatch])
 
+    //fetch the manufacturers
     useEffect(() => {
-        function fetchData(id: number) {
-            dispatch(setLoading(true))
-            fetch(`https://api2.myauto.ge/ka/getManModels?man_id=${id}`)
-                .then((response) => response.json())
-                .then((response) => setModels((prevModels) => ({...prevModels, [id]: response.data})))
-                .catch((error) => console.log(error))
-                .finally(() => dispatch(setLoading(false)))
-        }
-        products.forEach((product) => fetchData(product.man_id));
-    }, [dispatch, products])
+        fetch("https://static.my.ge/myauto/js/mans.json")
+            .then((response) => response.json())
+            .then((response) => dispatch(setManufacturers(response)))
+            .catch(error => console.log(error))
+    }, [dispatch])
+    
+    useEffect(() => {
+        if (windowWidth >= 1225) dispatch(setShowFiltersScreen(false))
+    }, [dispatch, showFiltersScreen, windowWidth])
 
     function getPhoto(photo: string, car_id: number, photo_ver:number){
         return `https://static.my.ge/myauto/photos/${photo}/thumbs/${car_id}_1.jpg?v=${photo_ver}`
@@ -59,21 +80,34 @@ export function Products(){
     return (
         <div>
             <div className={"main-container"}>
-                <Header/>
+                {!showFiltersScreen && <Header/>}
                 <div style={{display: "flex"}}>
-                    <DisplayFilters/>
 
-                    <div style={{display: "flex", flexDirection: "column"}}>
+                    {windowWidth > 1125 ? <DisplayFilters/> :
+                        <div>
+                            {showFiltersScreen ? <button
+                                className={"back-button"}
+                                onClick={() => dispatch(setShowFiltersScreen(false))}>
+                                <div style={{display: "flex", marginLeft: "10px"}}>
+                                    <div style={{scale: "1.5", marginTop: "3px"}}>{"<"}</div>
+                                    <div style={{marginLeft: "15px"}}>უკან</div>
+                                </div>
+                            </button> : ""}
+                            <DisplayFilters/>
+                        </div>
+                    }
+                    {isLoading ? <LoadingOverlay isLoading={isLoading}/> : ""}
+
+                    {!showFiltersScreen ? <div style={{display: "flex", flexDirection: "column"}}>
                     <ProductsSorter/>
                     <div className={"product-container"}>
-                        {isLoading ? <LoadingOverlay isLoading={isLoading}/> : ""}
-                        {displayedProducts.length ? displayedProducts.map((product: Product) => (
+                        {displayedProducts.length ? displayedProducts?.map((product: Product) => (
                             <div key={product.car_id} className={"product"}>
                                 <img
                                     src={getPhoto(product.photo, product.car_id, product.photo_ver)}
                                     alt="Product"
                                 />
-                                <div style={{marginTop: "15px"}}>
+                                <div className={"info-container"}>
                                     <div className={"name-year-customs"}>
                                         <CarModelName product={product} models={models}/>
 
@@ -88,23 +122,23 @@ export function Products(){
                                     <div className={"car-info"}>
                                         <div style={{display:"flex", flexDirection:"column"}}>
                                             <div style={{display: "flex"}}>
-                                                <div style={{marginTop: "2px"}}>{Icons.fuelIcon}</div>
+                                                <div className={"icons"}>{Icons.fuelIcon}</div>
                                                 <div className={"engine-volume"}>{engine_volume_handler(product)}</div>
                                             </div>
                                             <div style={{display: "flex", marginTop: "10px"}}>
-                                                <div style={{marginTop: "2px"}}>{Icons.gearIcon}</div>
+                                                <div className={"icons"}>{Icons.gearIcon}</div>
                                                 <div className={"gear-type"}>{gear_type_handler(product)}</div>
                                             </div>
                                         </div>
 
                                         <div style={{display:"flex", flexDirection:"column"}}>
                                             <div style={{display: "flex"}}>
-                                                <div style={{marginTop: "2px"}}>{Icons.mileageIcon}</div>
+                                                <div style={{marginLeft: "10px"}}>{Icons.mileageIcon}</div>
                                                 <div className={"mileage-covered"}>{product.car_run_km} კმ</div>
                                             </div>
                                             <div style={{display: "flex", marginTop: "10px"}}>
-                                                <div style={{marginTop: "2px"}}>{Icons.wheelIcon}</div>
-                                                <div style={{marginLeft: "10px"}}>{product.right_wheel ? "მარჯვენა" : "მარცხენა"}</div>
+                                                <div style={{marginLeft: "10px"}}>{Icons.wheelIcon}</div>
+                                                <div className={"wheel-type"}>{product.right_wheel ? "მარჯვენა" : "მარცხენა"}</div>
                                             </div>
                                         </div>
 
@@ -123,7 +157,7 @@ export function Products(){
                                     <div className={"views-time-container"}>
                                         <div style={{display: "flex"}}>
                                             <div className={"views"}>{`${product.views}  ნახვა`}</div>
-                                            <div style={{marginRight: "10px", fontWeight: "bold"}}>.</div>
+                                            <div className={"dot"}>.</div>
                                             <div className={"order-date"}>{date_handler(product.order_date)}</div>
                                         </div>
                                         <div style={{display:"flex"}}>
@@ -150,7 +184,7 @@ export function Products(){
                             </div> : ""
                         }
                     </div>
-                    </div>
+                    </div> : ""}
                 </div>
             </div>
         </div>

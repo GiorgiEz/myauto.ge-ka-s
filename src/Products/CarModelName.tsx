@@ -12,7 +12,7 @@ interface Props {
 export function CarModelName(props: Props) {
     const manufacturers = useSelector((state: ProductsState) => state.manufacturers)
 
-     function car_model_name() {
+    function displayCarName(){
         for (let man of manufacturers) {
             if (man.man_id === props.product.man_id.toString()) {
                 let model_name = ""
@@ -23,10 +23,10 @@ export function CarModelName(props: Props) {
                 }
                 const manufacturerName = man.man_name.toLowerCase().split(' ')
                     .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-                return `${manufacturerName} ${model_name} ${props.product.car_model}`;
+                return`${manufacturerName} ${model_name} ${props.product.car_model}`
             }
         }
-        return "";
+        return "...";
     }
 
     return (
@@ -34,10 +34,10 @@ export function CarModelName(props: Props) {
             {props.product.for_rent && (
                 <div style={{ display: "flex" }}>
                     <div className="for-rent">ქირავდება</div>
-                    {car_model_name()}
+                    <div className={"name"}>{displayCarName()}</div>
                 </div>
             )}
-            {!props.product.for_rent && car_model_name()}
+            {!props.product.for_rent && <div className={"name"}>{displayCarName()}</div>}
         </div>
     )
 }

@@ -11,13 +11,16 @@ import {ProductsState} from "../../Redux/redux-types";
 
 export function ModelFilter() {
     const dispatch = useDispatch()
-    const [field, , helpers] = useField("models");
-    const { values } = useFormikContext<FormFilterType>();
-    const [models, setModels] = useState<Model[]>([]);
     const products = useSelector((state: ProductsState) => state.products)
     const currency = useSelector((state: ProductsState) => state.currency)
     const sortValue = useSelector((state: ProductsState) => state.sortValue)
     const filtersArray = useSelector((state: ProductsState) => state.filtersArray)
+    const showFiltersScreen = useSelector((state: ProductsState) => state.showFiltersScreen)
+    const windowWidth = useSelector((state: ProductsState) => state.windowWidth)
+
+    const [field, , helpers] = useField("models");
+    const { values } = useFormikContext<FormFilterType>();
+    const [models, setModels] = useState<Model[]>([]);
 
     useEffect(() => {
         function fetchData(manufacturerId: string) {
@@ -47,19 +50,23 @@ export function ModelFilter() {
     }, [filtersArray.models])
 
     return (
-        <div className="multiselect-container">
-            <label htmlFor="model-select">მოდელი</label>
-            <MultiSelect
-                disabled={!values.manufacturers.length}
-                options={models.map((model) => ({ label: model.model_name, value: model.model_id }))}
-                value={field.value}
-                labelledBy="model-select"
-                className="dark"
-                onChange={(selected: Option[]) => helpers.setValue(selected)}
-                valueRenderer={displayPlaceholder}
-                hasSelectAll={false}
-                ItemRenderer={CustomItemRenderer}
-            />
+        <div>
+            {showFiltersScreen || windowWidth > 1125 ?
+                <div className="multiselect-container">
+                    <label htmlFor="model-select">მოდელი</label>
+                    <MultiSelect
+                        disabled={!values.manufacturers.length}
+                        options={models.map((model) => ({ label: model.model_name, value: model.model_id }))}
+                        value={field.value}
+                        labelledBy="model-select"
+                        className="dark"
+                        onChange={(selected: Option[]) => helpers.setValue(selected)}
+                        valueRenderer={displayPlaceholder}
+                        hasSelectAll={false}
+                        ItemRenderer={CustomItemRenderer}
+                    />
+                </div> : ""
+            }
         </div>
     )
 }

@@ -1,8 +1,8 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "../Sorting/sorting.css"
 import {useDispatch, useSelector} from "react-redux";
 import {ProductsState} from "../Redux/redux-types";
-import {setFiltersArray} from "../Redux/Actions";
+import {setFiltersArray, setShowFiltersScreen, setWindowWidth} from "../Redux/Actions";
 import {periodConverter} from "../Utils/types";
 import {Option} from "react-multi-select-component";
 import {Icons} from "../Utils/Icons";
@@ -10,6 +10,17 @@ import {Icons} from "../Utils/Icons";
 export function FiltersArray(){
     const dispatch = useDispatch()
     const filtersArray = useSelector((state: ProductsState) => state.filtersArray)
+    const windowWidth = useSelector((state: ProductsState) => state.windowWidth)
+
+    const handleFilterButtonClick = () => dispatch(setShowFiltersScreen(true))
+
+    useEffect(() => {
+        const handleResize = () => dispatch(setWindowWidth(window.innerWidth))
+        if (windowWidth > 1125) dispatch(setShowFiltersScreen(false))
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, [dispatch])
 
     function handlePeriodRemoval(){
         dispatch(setFiltersArray({...filtersArray, period: ""}))
@@ -59,15 +70,20 @@ export function FiltersArray(){
     return (
         <div>
             {(filtersArray.period || filtersArray.dealType.length || filtersArray.manufacturers.length || filtersArray.models.length
-                || filtersArray.categories.length || filtersArray.priceFrom || filtersArray.priceTo) ?
-                <div className={"period-container"}>
+                || filtersArray.categories.length || filtersArray.priceFrom || filtersArray.priceTo || windowWidth < 1125) ?
+                <div className={"added-filters-container"}>
                     <div className="tooltip">
                         <button className="period-container-delete-button"
                                 onClick={deleteAllFilters}>{Icons.deleteIcon}
                         </button>
                         <span className="tooltip-text">ფილტრის გასუფთავება</span>
                     </div>
-                    <div style={{marginLeft: "15px"}}>|</div>
+
+                    <div className={"line-between-delete-and-filters"}>|</div>
+                    <button className={"filter-button"} onClick={handleFilterButtonClick}>
+                        <div style={{marginRight:"5px", marginLeft: "5px", marginTop: "5px"}}>{Icons.filterIcon}</div>
+                        <div style={{marginRight: "5px"}}>ფილტრი</div>
+                    </button>
 
                     {
                         filtersArray.period ?
@@ -142,11 +158,12 @@ export function FiltersArray(){
                                     </button>
                             </div>: ""
                     }
+
                     {filterSize() > 10 ? (
                         <div className={"filters-delete-button"}>
                             <div style={{ padding: "10px"}}>{`სულ ${filterSize()}`}</div>
                         </div>
-                    ) : null}
+                    ) : ""}
                 </div> : ""
             }
         </div>

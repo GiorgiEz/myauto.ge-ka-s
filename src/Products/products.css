@@ -75,6 +75,7 @@ img{
 
 .year{
     margin-left: 15px;
+    margin-right: 5px;
     color: gray;
     font-weight: bold;
 }
@@ -105,10 +106,19 @@ img{
     margin-left: 10px;
 }
 
+.dot{
+    margin-right: 10px;
+    font-weight: bold;
+}
+
 .money{
     font-size: 25px;
     font-weight: 550;
     margin-right: 10px;
+}
+
+.wheel-type{
+    margin-left: 10px;
 }
 
 .views{
@@ -125,6 +135,7 @@ img{
     background: #019301;
     height: 18px;
     width: 80px;
+    padding: 2px;
     margin-right: 10px;
     border-radius: 3px;
     color: white;
@@ -144,9 +155,127 @@ img{
     color: white;
     font-weight: bold;
     font-size: 17px;
+    margin-bottom: 20px;
 }
 
 .clear-filters:hover{
     cursor: grabbing;
     background-color: #b70101;
+}
+
+.info-container{
+    margin-top: 15px;
+}
+
+@media (max-width: 1125px) {
+    .main-container{
+        width: auto;
+        height: auto;
+    }
+
+    .product-container{
+        width: auto;
+        height: auto;
+    }
+
+    img {
+        border-radius: 10px;
+        max-width: 85vw;
+        max-height: 80vh;
+        height: auto;
+        width: 80vw;
+    }
+
+    .product {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 90vw;
+    }
+
+    .name{
+        font-size: calc(1vw + 8px);
+    }
+
+    .year{
+        font-size: calc(1vw + 8px);
+        margin-right: 5px;
+    }
+
+    .customs-passed{
+        font-size: calc(1vw + 7px);
+    }
+
+    .customs-not-passed{
+        font-size: calc(1vw + 7px);
+    }
+
+    .money{
+        font-size: 20px;
+    }
+
+    .engine-volume{
+        font-size: 13px;
+        margin-left: 5px;
+    }
+
+    .mileage-covered{
+        margin-left: 5px;
+        font-size: 13px;
+    }
+
+    .gear-type{
+        margin-left: 5px;
+        font-size: 13px;
+    }
+
+    .wheel-type{
+        margin-left: 5px;
+        font-size: 13px;
+    }
+
+    .name-year-customs{
+        width: 80vw;
+    }
+
+    .car-info{
+        width: 80vw;
+    }
+
+    .views{
+        font-size: 15px;
+    }
+
+    .order-date{
+        font-size: 15px;
+    }
+
+    .for-rent{
+        height: 1.5vh;
+        max-width: 12vw;
+        width: auto;
+        font-size: calc(1vw + 6px);
+        margin-right: 5px;
+        padding: 3px;
+    }
+
+    .back-button {
+        width: 100vw;
+        height: 50px;
+        border: 0;
+        font-size: 15px;
+        font-weight: bold;
+        background-color: white;
+        box-shadow: 0 1px 5px rgba(208, 204, 204, 0.3);
+    }
+
+    .back-button:hover{
+        cursor: grabbing;
+    }
+
+    .info-container{
+        margin-top: 0;
+    }
+
 }

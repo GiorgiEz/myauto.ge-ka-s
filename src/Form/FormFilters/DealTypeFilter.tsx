@@ -19,6 +19,8 @@ export function DealTypeFilter(){
     const currency = useSelector((state: ProductsState) => state.currency)
     const sortValue = useSelector((state: ProductsState) => state.sortValue)
     const filtersArray = useSelector((state: ProductsState) => state.filtersArray)
+    const showFiltersScreen = useSelector((state: ProductsState) => state.showFiltersScreen)
+    const windowWidth = useSelector((state: ProductsState) => state.windowWidth)
     const [field, , helpers] = useField("dealType");
 
     const { setFieldValue } = useFormikContext();
@@ -43,19 +45,23 @@ export function DealTypeFilter(){
     }
 
     return (
-        <div style={{marginBottom: "10px"}}>
-            <label htmlFor="deal-type-select">გარიგების ტიპი</label>
-            <MultiSelect
-                value={field.value}
-                options={options}
-                onChange={handleChange}
-                valueRenderer={displayPlaceholder}
-                className="dark"
-                hasSelectAll={false}
-                labelledBy={"deal-type-select"}
-                ItemRenderer={CustomItemRenderer}
-                disableSearch={true}
-            />
+        <div>
+            {showFiltersScreen || windowWidth > 1125 ?
+                <div style={{marginBottom: "10px"}}>
+                    <label htmlFor="deal-type-select">გარიგების ტიპი</label>
+                    <MultiSelect
+                        value={field.value}
+                        options={options}
+                        onChange={handleChange}
+                        valueRenderer={displayPlaceholder}
+                        className="dark"
+                        hasSelectAll={false}
+                        labelledBy={"deal-type-select"}
+                        ItemRenderer={CustomItemRenderer}
+                        disableSearch={true}
+                    />
+                </div> : ""
+            }
         </div>
     )
 }

@@ -32,7 +32,7 @@ option:hover {
     background-color: blue;
 }
 
-.period-container{
+.added-filters-container{
     background-color: white;
     width: 800px;
     margin-top: 15px;
@@ -120,4 +120,44 @@ option:hover {
     display: flex;
     align-items: center;
     justify-items: center;
+}
+
+.line-between-delete-and-filters{
+    margin-left: 15px;
+}
+
+@media (max-width: 1125px) {
+    .sorting{
+        width: 90vw;
+        height: 40px;
+        margin: 5px;
+        display: flex;
+        align-items: center;
+    }
+
+    .posts{
+        font-size: 15px;
+    }
+
+    .sort-select{
+        width: 170px;
+        font-size: 13px;
+    }
+
+    .added-filters-container{
+        width: 90vw;
+    }
+
+    .sorting-container{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .period-container-delete-button{
+        display: none;
+    }
+
+    .line-between-delete-and-filters{
+        display: none;
+    }
 }
