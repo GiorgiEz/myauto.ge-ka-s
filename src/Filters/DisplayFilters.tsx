@@ -73,7 +73,6 @@ export function filterProducts(products: Product[], filtersArray: FilterType, cu
     return filteredProducts
 }
 
-//filter form
 export function DisplayFilters() {
     const windowWidth = useSelector((state: ProductsState) => state.windowWidth)
     const showFiltersScreen = useSelector((state: ProductsState) => state.showFiltersScreen)
