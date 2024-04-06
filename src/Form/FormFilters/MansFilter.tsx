@@ -13,14 +13,14 @@ export function ManufacturerFilter() {
     const windowWidth = useSelector((state: ProductsState) => state.windowWidth)
 
     const displayPlaceholder = (selected: Option[]) => {
-        if (selected.length === 0) return <div>მწარმოებელი</div>
+        if (selected.length === 0) return <div>Manufacturer</div>
     }
 
     return (
         <div>
             {showFiltersScreen || windowWidth > 1125 ?
                 <div className="multiselect-container">
-                    <label htmlFor="manufacturer-select">მწარმოებელი</label>
+                    <label htmlFor="manufacturer-select">Manufacturer</label>
                     <MultiSelect
                         options={manufacturers.map((man) => ({ label: man.man_name, value: man.man_id }))}
                         value={field.value}

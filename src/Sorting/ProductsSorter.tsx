@@ -11,12 +11,12 @@ import {Option} from "react-multi-select-component";
 import {customStyles} from "../Filters/DisplayFilters";
 
 const options = [
-    { value: 'თარიღი კლებადი', label: 'თარიღი კლებადი' },
-    { value: 'თარიღი ზრდადი', label: 'თარიღი ზრდადი' },
-    { value: 'ფასი კლებადი', label: 'ფასი კლებადი' },
-    { value: 'ფასი ზრდადი', label: 'ფასი ზრდადი' },
-    { value: 'გარბენი კლებადი', label: 'გარბენი კლებადი' },
-    { value: 'გარბენი ზრდადი', label: 'გარბენი ზრდადი' },
+    { value: 'Date Desc', label: 'Date Desc' },
+    { value: 'Date Asc', label: 'Date Asc' },
+    { value: 'Cost Desc', label: 'Cost Desc' },
+    { value: 'Cost Asc', label: 'Cost Asc' },
+    { value: 'Mileage Desc', label: 'Mileage Desc' },
+    { value: 'Mileage Asc', label: 'Mileage Asc' },
 ]
 
 export function ProductsSorter(){
@@ -52,7 +52,7 @@ export function ProductsSorter(){
     return (
         <div className={"sorting-container"}>
             <div className={"sorting"}>
-                <div className={"posts"}>{displayedProducts.length} განცხადება</div>
+                <div className={"posts"}>{displayedProducts.length} Listing</div>
 
                 {!showFiltersScreen ? <div style={{display: "flex"}}>
                     <PeriodFilter/>
@@ -62,7 +62,7 @@ export function ProductsSorter(){
                         options={options.filter(option => option.value !== sortValue)}
                         onChange={handleSortingSelect}
                         styles={customStylesSort}
-                        placeholder="თარიღი კლებადი"
+                        placeholder="Date Desc"
                         isSearchable={false}
                         className={"sort-select"}
                     />

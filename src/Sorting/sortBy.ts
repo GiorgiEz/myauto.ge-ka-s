@@ -1,12 +1,12 @@
 import {Product} from "../Utils/types";
 
 enum SortOrder {
-    DATE_DESC = "თარიღი კლებადი",
-    DATE_ASC = "თარიღი ზრდადი",
-    COST_DESC = "ფასი კლებადი",
-    COST_ASC = "ფასი ზრდადი",
-    MILEAGE_DESC = "გარბენი კლებადი",
-    MILEAGE_ASC = "გარბენი ზრდადი",
+    DATE_DESC = "Date Desc",
+    DATE_ASC = "Date Asc",
+    COST_DESC = "Cost Desc",
+    COST_ASC = "Cost Asc",
+    MILEAGE_DESC = "Mileage Desc",
+    MILEAGE_ASC = "Mileage Asc",
 }
 
 export function sortBy(value: string, products: Product[]){

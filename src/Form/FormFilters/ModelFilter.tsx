@@ -27,14 +27,14 @@ export function ModelFilter() {
     }, [values.manufacturers])
 
     const displayPlaceholder = (selected: Option[]) => {
-        if (selected.length === 0) return <div>მოდელი</div>
+        if (selected.length === 0) return <div>Model</div>
     }
 
     return (
         <div>
             {showFiltersScreen || windowWidth > 1125 ?
                 <div className="multiselect-container">
-                    <label htmlFor="model-select">მოდელი</label>
+                    <label htmlFor="model-select">Model</label>
                     <MultiSelect
                         disabled={!values.manufacturers.length}
                         options={models.map((model) => ({ label: model.model_name, value: model.model_id }))}

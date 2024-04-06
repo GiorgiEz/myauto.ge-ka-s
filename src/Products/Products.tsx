@@ -23,8 +23,8 @@ import {
     gear_type_handler
 } from "./ProductsInfo";
 import {CarModelName} from "./CarModelName";
-import {LoadingOverlay} from "./LoadingScreen/LoadingOverlay";
 import {Icons} from "../Utils/Icons";
+import {LoadingOverlay} from "./LoadingScreen/LoadingOverlay";
 
 export function Products(){
     const dispatch = useDispatch()
@@ -90,7 +90,7 @@ export function Products(){
                                 onClick={() => dispatch(setShowFiltersScreen(false))}>
                                 <div style={{display: "flex", marginLeft: "10px"}}>
                                     <div style={{scale: "1.5", marginTop: "3px"}}>{"<"}</div>
-                                    <div style={{marginLeft: "15px"}}>უკან</div>
+                                    <div style={{marginLeft: "15px"}}>Back</div>
                                 </div>
                             </button> : ""}
                             <DisplayFilters/>
@@ -134,17 +134,17 @@ export function Products(){
                                         <div style={{display:"flex", flexDirection:"column"}}>
                                             <div style={{display: "flex"}}>
                                                 <div style={{marginLeft: "10px"}}>{Icons.mileageIcon}</div>
-                                                <div className={"mileage-covered"}>{product.car_run_km} კმ</div>
+                                                <div className={"mileage-covered"}>{product.car_run_km} km</div>
                                             </div>
                                             <div style={{display: "flex", marginTop: "10px"}}>
                                                 <div style={{marginLeft: "10px"}}>{Icons.wheelIcon}</div>
-                                                <div className={"wheel-type"}>{product.right_wheel ? "მარჯვენა" : "მარცხენა"}</div>
+                                                <div className={"wheel-type"}>{product.right_wheel ? "Right" : "Left"}</div>
                                             </div>
                                         </div>
 
                                         <div style={{display:"flex", flexDirection:"column"}}>
                                             <div style={{marginBottom: "10px", display: "flex"}}>
-                                                {product.price_value === 0 || !product.price_value ? "ფასი შეთანხმებით" :
+                                                {product.price_value === 0 || !product.price_value ? "price with deal" :
                                                     <div style={{display: "flex"}}>
                                                         <div className={"money"}>{currencyConverter(product, currency)}</div>
                                                         <CurrencyButtons/>
@@ -156,14 +156,9 @@ export function Products(){
 
                                     <div className={"views-time-container"}>
                                         <div style={{display: "flex"}}>
-                                            <div className={"views"}>{`${product.views}  ნახვა`}</div>
+                                            <div className={"views"}>{`${product.views}  views`}</div>
                                             <div className={"dot"}>.</div>
                                             <div className={"order-date"}>{date_handler(product.order_date)}</div>
-                                        </div>
-                                        <div style={{display:"flex"}}>
-                                            <div className={"comment-view-save-icons"}>{Icons.commentIcon}</div>
-                                            <div className={"comment-view-save-icons"}>{Icons.viewIcon}</div>
-                                            <div className={"comment-view-save-icons"}>{Icons.saveIcon}</div>
                                         </div>
                                     </div>
 
@@ -173,13 +168,13 @@ export function Products(){
                             <div style={{display: "flex", flexDirection: "column", alignItems: "center", marginTop:"30px"}}>
                                 {Icons.notFoundIcon}
                                 <div style={{fontWeight: "bold", marginBottom: "10px", fontSize:"30px", marginTop: "20px"}}>
-                                    განცხადებები ვერ მოიძებნა
+                                    Ads not found
                                 </div>
                                 <button className={"clear-filters"}
                                         onClick={() =>
                                             dispatch(setFiltersArray({period: "", dealType: [], manufacturers: [],
                                                 models: [], categories: [], priceTo: "", priceFrom: ""}))}>
-                                            ფილტრის გასუფთავება
+                                            Clear Filters
                                 </button>
                             </div> : ""
                         }
