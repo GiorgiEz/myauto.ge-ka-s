@@ -31,8 +31,8 @@ export function filterByDealType(products: Product[], options: Option[]){
 
     let filteredProducts: Product[] = [...products]
     for (let option of options) {
-        if (option.value === "ქირავდება") filteredProducts = allProducts.filter((product) => product.for_rent)
-        else if (option.value === "იყიდება") filteredProducts = allProducts.filter((product) => !product.for_rent)
+        if (option.value === "For Rent") filteredProducts = allProducts.filter((product) => product.for_rent)
+        else if (option.value === "For Sale") filteredProducts = allProducts.filter((product) => !product.for_rent)
     }
     return filteredProducts
 }

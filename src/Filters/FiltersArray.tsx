@@ -76,13 +76,13 @@ export function FiltersArray(){
                         <button className="period-container-delete-button"
                                 onClick={deleteAllFilters}>{Icons.deleteIcon}
                         </button>
-                        <span className="tooltip-text">ფილტრის გასუფთავება</span>
+                        <span className="tooltip-text">Clear Filters</span>
                     </div>
 
                     <div className={"line-between-delete-and-filters"}>|</div>
                     <button className={"filter-button"} onClick={handleFilterButtonClick}>
                         <div style={{marginRight:"5px", marginLeft: "5px", marginTop: "5px"}}>{Icons.filterIcon}</div>
-                        <div style={{marginRight: "5px"}}>ფილტრი</div>
+                        <div style={{marginRight: "5px"}}>Filter</div>
                     </button>
 
                     {
@@ -142,7 +142,7 @@ export function FiltersArray(){
                     {
                         filtersArray.priceFrom ?
                             <div className={"filters-button"}>
-                                <div style={{marginLeft: "15px"}}>{`ფასი: ${filtersArray.priceFrom} დან`}</div>
+                                <div style={{marginLeft: "15px"}}>{`cost: ${filtersArray.priceFrom} from`}</div>
                                     <button className={"filters-delete-button"}
                                             onClick={handlePriceFromFilterRemoval}>x
                                     </button>
@@ -152,7 +152,7 @@ export function FiltersArray(){
                     {
                         filtersArray.priceTo ?
                             <div className={"filters-button"}>
-                                <div style={{marginLeft: "15px"}}>{`ფასი: ${filtersArray.priceTo} მდე`}</div>
+                                <div style={{marginLeft: "15px"}}>{`cost: ${filtersArray.priceTo} to`}</div>
                                     <button className={"filters-delete-button"}
                                             onClick={handlePriceToFilterRemoval}>x
                                     </button>
@@ -161,7 +161,7 @@ export function FiltersArray(){
 
                     {filterSize() > 10 ? (
                         <div className={"filters-delete-button"}>
-                            <div style={{ padding: "10px"}}>{`სულ ${filterSize()}`}</div>
+                            <div style={{ padding: "10px"}}>{`amount ${filterSize()}`}</div>
                         </div>
                     ) : ""}
                 </div> : ""

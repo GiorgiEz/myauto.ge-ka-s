@@ -54,7 +54,7 @@ export function SearchForm(){
                 <Field name={"categories"} as={CategoryFilter}></Field>
                 <Field name={"price"} as={PriceFilter}></Field>
 
-                {showFiltersScreen || windowWidth > 1125 ? <button className={"button-search"} type={"submit"}>ძებნა</button> : ""}
+                {showFiltersScreen || windowWidth > 1125 ? <button className={"button-search"} type={"submit"}>search</button> : ""}
             </Form>
         </Formik>
     )

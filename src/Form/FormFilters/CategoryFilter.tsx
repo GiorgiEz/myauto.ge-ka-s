@@ -13,21 +13,21 @@ export function CategoryFilter(){
     const windowWidth = useSelector((state: ProductsState) => state.windowWidth)
 
     useEffect(() => {
-        fetch("https://api2.myauto.ge/ka/cats/get")
+        fetch("https://api2.myauto.ge/en/cats/get")
             .then((response) => response.json())
             .then((response) => setCategories(response.data))
             .catch(error => console.log(error))
     }, [])
 
     const displayPlaceholder = (selected: Option[]) => {
-        if (selected.length === 0) return <div>კატეგორია</div>
+        if (selected.length === 0) return <div>Category</div>
     }
 
     return (
         <div>
             {showFiltersScreen || windowWidth > 1125 ?
                 <div className="multiselect-container">
-                    <label htmlFor="category-select">კატეგორია</label>
+                    <label htmlFor="category-select">Category</label>
                     <MultiSelect
                         options={categories.map((cat) => ({label: cat.title, value: cat.category_id,}))}
                         value={field.value}

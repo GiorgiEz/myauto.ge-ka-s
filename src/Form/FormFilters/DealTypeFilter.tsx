@@ -9,8 +9,8 @@ import {setDisplayedProducts} from "../../Redux/Actions";
 import {sortBy} from "../../Sorting/sortBy";
 
 const options = [
-    { value: 'იყიდება', label: 'იყიდება' },
-    { value: 'ქირავდება', label: 'ქირავდება' },
+    { value: 'For Sale', label: 'For Sale' },
+    { value: 'For Rent', label: 'For Rent' },
 ]
 
 export function DealTypeFilter(){
@@ -36,7 +36,7 @@ export function DealTypeFilter(){
     }, [filtersArray])
 
     const displayPlaceholder = (selected: Option[]) => {
-        if (selected.length === 0) return <div>გარიგების ტიპი</div>
+        if (selected.length === 0) return <div>Deal Type</div>
     }
 
     const handleChange = (selected: Option[]) => {
@@ -48,7 +48,7 @@ export function DealTypeFilter(){
         <div>
             {showFiltersScreen || windowWidth > 1125 ?
                 <div style={{marginBottom: "10px"}}>
-                    <label htmlFor="deal-type-select">გარიგების ტიპი</label>
+                    <label htmlFor="deal-type-select">Deal Type</label>
                     <MultiSelect
                         value={field.value}
                         options={options}

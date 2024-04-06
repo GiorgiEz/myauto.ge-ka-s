@@ -78,12 +78,7 @@ export function DisplayFilters() {
     const showFiltersScreen = useSelector((state: ProductsState) => state.showFiltersScreen)
 
     return (
-        <div style={{display: "flex", flexDirection: "column"}}>
-            {windowWidth > 1125 ? <div style={{display: "flex", fontWeight: "100"}}>
-                <button className={"menu-buttons"}>მთავარი</button><h6>{">"}</h6>
-                <button className={"menu-buttons"}>ძიება</button><h6>{">"}</h6>
-                <button className={"menu-buttons"}>იყიდება</button>
-            </div> : ""}
+        <div style={{display: "flex", flexDirection: "column", marginTop: "20px"}}>
             <div className={"search-container"}>
                 {showFiltersScreen || windowWidth > 1125 ? <div className={"vehicle-buttons"}>
                     <button className={`type-button`} style={{borderTopLeftRadius: "5px"}}>

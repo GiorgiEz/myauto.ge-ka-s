@@ -10,16 +10,16 @@ import {sortBy} from "../Sorting/sortBy";
 import {Option} from "react-multi-select-component";
 
 const options = [
-    {value: '', label: 'პერიოდი', isHidden: true, isDisabled: true},
-    {value: '1', label: '1 საათი'},
-    {value: '2', label: '2 საათი'},
-    {value: '3', label: '3 საათი'},
-    {value: '24', label: '1 დღე'},
-    {value: '48', label: '2 დღე'},
-    {value: '72', label: '3 დღე'},
-    {value: '168', label: '1 კვირა'},
-    {value: '336', label: '2 კვირა'},
-    {value: '504', label: '3 კვირა'},
+    {value: '', label: 'Period', isHidden: true, isDisabled: true},
+    {value: '1', label: '1 hour'},
+    {value: '2', label: '2 hours'},
+    {value: '3', label: '3 hours'},
+    {value: '24', label: '1 day'},
+    {value: '48', label: '2 days'},
+    {value: '72', label: '3 days'},
+    {value: '168', label: '1 week'},
+    {value: '336', label: '2 weeks'},
+    {value: '504', label: '3 weeks'},
 ]
 
 export function PeriodFilter() {
@@ -46,7 +46,7 @@ export function PeriodFilter() {
                 value={options.find(option => option.value === filtersArray.period)}
                 onChange={handlePeriodSelect}
                 options={options.filter(option => option.value !== filtersArray.period)}
-                placeholder="პერიოდი"
+                placeholder="Period"
                 styles={customStyles}
                 isSearchable={false}
                 className={"period-select"}

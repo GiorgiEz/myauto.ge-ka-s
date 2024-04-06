@@ -14,7 +14,7 @@ export function PriceFilter(){
         <div>{showFiltersScreen || windowWidth > 1125 ?
                 <div>
                     <div style={{display: "flex", marginBottom: "10px", justifyContent: "space-between", marginTop: "10px"}}>
-                        <div style={{fontSize: "15px"}}>ფასი</div>
+                        <div style={{fontSize: "15px"}}>Cost</div>
                         <CurrencyButtons/>
                     </div>
 
@@ -23,7 +23,7 @@ export function PriceFilter(){
                             type={"number"}
                             value={fieldFrom.value}
                             className={"search-price-inputs"}
-                            placeholder={"დან"}
+                            placeholder={"From"}
                             onChange={(event: ChangeEvent<HTMLInputElement>) => helpersFrom.setValue(event.target.value)}
                         />
                         <div className={"line-between-price"}>-</div>
@@ -31,7 +31,7 @@ export function PriceFilter(){
                             type={"number"}
                             value={fieldTo.value}
                             className={"search-price-inputs"}
-                            placeholder={"მდე"}
+                            placeholder={"To"}
                             onChange={(event: ChangeEvent<HTMLInputElement>) => helpersTo.setValue(event.target.value)}
                         />
                     </div>
