@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/myauto.ge-ka-s/static/css/main.1456cbfb.css",
-    "main.js": "/myauto.ge-ka-s/static/js/main.2c761394.js",
+    "main.js": "/myauto.ge-ka-s/static/js/main.1f81f6ac.js",
     "index.html": "/myauto.ge-ka-s/index.html",
     "main.1456cbfb.css.map": "/myauto.ge-ka-s/static/css/main.1456cbfb.css.map",
-    "main.2c761394.js.map": "/myauto.ge-ka-s/static/js/main.2c761394.js.map"
+    "main.1f81f6ac.js.map": "/myauto.ge-ka-s/static/js/main.1f81f6ac.js.map"
   },
   "entrypoints": [
     "static/css/main.1456cbfb.css",
-    "static/js/main.2c761394.js"
+    "static/js/main.1f81f6ac.js"
   ]
 }
