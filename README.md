@@ -12,7 +12,7 @@ The Cars Shop Website is a frontend project designed to integrate with the API o
 - **Sorting Mechanism**: Allow users to sort the car listings based on statistics like mileage, price, etc.
 
 - **Filtering Options**: Enable users to filter cars by:
-  - Deal type (e.g., new, used, lease)
+  - Deal type (e.g. lease)
   - Manufacturer
   - Model category
   - Cost range
